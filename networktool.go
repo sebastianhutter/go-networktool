@@ -134,21 +134,11 @@ func main() {
 		go ScanTarget(results, &gwg, t, *protocolPtr, ports_to_scan)
 	}
 
-	//ip := "127.0.0.1"
-	//ports := []int{80, 8888, 127}
-	//protocol := "tcp"
-
-	// add amount of targets to scan to wait group
-	//gwg.Add(1)
-	//go ScanTarget(results, &gwg, ip, protocol, ports)
-
-	//msg := <-results
-	//fmt.Println(msg)
-
 	// wait until all scans have finished
 	gwg.Wait()
 	close(results)
 	for r := range results {
-		fmt.Println(r)
+		fmt.Printf("%+v", r)
+
 	}
 }
